@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Provider;
 use App\Models\Contract;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreProviderRequest;
-use App\Http\Requests\UpdateProviderRequest;
+use App\Http\Requests\StoreContractRequest;
+use App\Http\Requests\UpdateContractRequest;
 
-class ProviderController extends Controller
+class ContractController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers = Provider::all();
-        return view('pages.providers.index', compact('providers'));
+        $contracts = Contract::all();
+        return view('pages.contracts.index', compact('contracts'));
     }
 
     /**
@@ -28,7 +27,7 @@ class ProviderController extends Controller
      */
     public function create()
     {
-        return view('pages.providers.create');
+        return view('pages.contracts.create');
     }
 
     /**
@@ -37,20 +36,20 @@ class ProviderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProviderRequest $request)
+    public function store(StoreContractRequest $request)
     {
-        $provider = new Provider($request->validated());
-        $provider->save();
-        return redirect()->route('providers.index');
+        $contract = new Contract($request->validated());
+        $contract->save();
+        return redirect()->route('contracts.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Provider  $provider
+     * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function show(Provider $provider)
+    public function show(Contract $contract)
     {
         //
     }
@@ -58,37 +57,37 @@ class ProviderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Provider  $provider
+     * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function edit(Provider $provider)
+    public function edit(Contract $contract)
     {
-        return view('pages.providers.edit', compact('provider'));
+        return view('pages.contracts.edit', compact('contract'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Provider  $provider
+     * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProviderRequest $request, Provider $provider)
+    public function update(UpdateContractRequest $request, Contract $contract)
     {
-        $provider->update($request->validated());
-        $provider->save();
-        return redirect()->route('providers.index');
+        $contract->update($request->validated());
+        $contract->save();
+        return redirect()->route('contracts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Provider  $provider
+     * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Provider $provider)
+    public function destroy(Contract $contract)
     {
-        $provider->delete();
+        $contract->delete();
         return back();
     }
 }

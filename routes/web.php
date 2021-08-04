@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::resource('providers', App\Http\Controllers\ProviderController::class);
+Route::resource('products', App\Http\Controllers\ProductController::class);
+Route::resource('contracts', App\Http\Controllers\ContractController::class);
 
 Auth::routes();
 
