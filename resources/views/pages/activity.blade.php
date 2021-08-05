@@ -10,23 +10,15 @@
                     @foreach ($lastActivity as $log)
                         <div class="card mb-3">
                             <div class="card-header">
-                                {{ $log->updated_at->toDayDateTimeString() }}<br>
+                                {{ $log->created_at->toDayDateTimeString() }}<br>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Details</h5>
-                                @isset($log->properties['attributes'])
-                                    <ul>
-                                        <li>model: <strong>{{ $log->subject_type }}</strong> -> <strong>{{ $log->properties['attributes']['name'] }}</strong></li>
-                                        <li>id_model: <strong>{{ $log->subject_id }}</strong></li>
-                                        <li>action: <strong>{{ $log->description }}</strong></li>
-                                    </ul>
-                                @else
-                                    <ul>
-                                        <li>model: <strong>{{ $log->subject_type }}</strong> @isset($log->properties['attributes']['name'])-> <strong>{{ $log->properties['attributes']['name'] }}</strong>@endif</li>
-                                        <li>id_model: <strong>{{ $log->subject_id }}</li>
-                                        <li>action: <strong>{{ $log->description }}</li>
-                                    </ul>
-                                @endisset
+                                <ul>
+                                    <li>model: <strong>{{ $log->subject_type }}</strong></li>
+                                    <li>id_model: <strong>{{ $log->subject_id }}</strong></li>
+                                    <li>action: <strong>{{ $log->name }}</strong></li>
+                                </ul>
                             </div>
                         </div>
                     @endforeach
