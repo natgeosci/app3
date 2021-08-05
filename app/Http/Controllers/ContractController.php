@@ -30,7 +30,8 @@ class ContractController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view('pages.contracts.create', compact('products'));
+        $providers = Provider::all();
+        return view('pages.contracts.create', compact('products', 'providers'));
     }
 
     /**
@@ -45,7 +46,7 @@ class ContractController extends Controller
         $contract->provider_id = request()->get('provider_id');
         $contract->save();
         $contract->products()->sync(request('products'));
-        return redirect()->route('providers.index');
+        return redirect()->route('contracts.index');
     }
 
     /**
@@ -67,13 +68,14 @@ class ContractController extends Controller
      */
     public function edit(Contract $contract)
     {
+        $providers = Provider::all();
         $products = Product::all();
         $selected_products = [];
         foreach ($contract->products as $sel_prod)
         {
             array_push($selected_products, $sel_prod->id);
         }
-        return view('pages.contracts.edit', compact('contract', 'products', 'selected_products'));
+        return view('pages.contracts.edit', compact('contract', 'providers', 'products', 'selected_products'));
     }
 
     /**
@@ -88,7 +90,7 @@ class ContractController extends Controller
         $contract->update($request->validated());
         $contract->save();
         $contract->products()->sync(request('products'));
-        return redirect()->route('providers.index');
+        return redirect()->route('contracts.index');
     }
 
     /**
@@ -101,5 +103,23 @@ class ContractController extends Controller
     {
         $contract->delete();
         return back();
+    }
+
+    public function onlyTrashedContracts()
+    {
+        $contracts = Contract::onlyTrashed()->whereNotNull('deleted_at')->get();
+        return view('pages.contracts.trashed', compact('contracts'));
+    }
+
+    public function restoreContracts(Request $request, $id)
+    {
+        Contract::onlyTrashed()->find($id)->restore();
+        return redirect()->route('trashed_contracts');
+    }
+
+    public function permanentlyDeleteContracts(Request $request, $id)
+    {
+        Contract::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->route('trashed_contracts');
     }
 }

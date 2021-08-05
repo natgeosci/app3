@@ -43,6 +43,7 @@
                 </tbody>
             </table>
             <a href="{{ route('providers.create') }}" class="btn btn-primary btn-block">New Provider</a>
+            <a href="{{ route('trashed_providers') }}" class="btn btn-outline-secondary btn-block">Trash</a>
         </div>
     </div>
 </div>

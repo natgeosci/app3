@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <a href="{{ route('welcome') }}">Back</a>
-            <div class="col-md-4">
+            <div class="col-md-8">
                 @if (count($lastActivity))
                     <h2 class="text-center">Last Activity</h2>
                     @foreach ($lastActivity as $log)
@@ -22,7 +22,7 @@
                                     </ul>
                                 @else
                                     <ul>
-                                        <li>model: <strong>{{ $log->subject_type }}</strong> -> <strong>{{ $log->properties['attributes']['name'] }}</strong></li>
+                                        <li>model: <strong>{{ $log->subject_type }}</strong> @isset($log->properties['attributes']['name'])-> <strong>{{ $log->properties['attributes']['name'] }}</strong>@endif</li>
                                         <li>id_model: <strong>{{ $log->subject_id }}</li>
                                         <li>action: <strong>{{ $log->description }}</li>
                                     </ul>

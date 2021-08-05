@@ -92,4 +92,22 @@ class ProviderController extends Controller
         $provider->delete();
         return back();
     }
+
+    public function onlyTrashedProviders()
+    {
+        $providers = Provider::onlyTrashed()->whereNotNull('deleted_at')->get();
+        return view('pages.providers.trashed', compact('providers'));
+    }
+
+    public function restoreProviders(Request $request, $id)
+    {
+        Provider::onlyTrashed()->find($id)->restore();
+        return redirect()->route('trashed_providers');
+    }
+
+    public function permanentlyDeleteProviders(Request $request, $id)
+    {
+        Provider::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->route('trashed_providers');
+    }
 }

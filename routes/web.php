@@ -18,12 +18,20 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::resource('providers', App\Http\Controllers\ProviderController::class);
-Route::get('pages/contracts/create/{id}', [App\Http\Controllers\ContractController::class, 'create'])->name('add_contract');
+Route::get('pages/providers/trashed', [App\Http\Controllers\ProviderController::class, 'onlyTrashedProviders'])->name('trashed_providers');
+Route::get('pages/providers.restore/{id}', [App\Http\Controllers\ProviderController::class, 'restoreProviders'])->name('restore_providers');
+Route::get('pages/providers/permanentlyDelete/{id}', [App\Http\Controllers\ProviderController::class, 'permanentlyDeleteProviders'])->name('permanently_delete_providers');
 
 Route::resource('products', App\Http\Controllers\ProductController::class);
+Route::get('pages/products/trashed', [App\Http\Controllers\ProductController::class, 'onlyTrashedProducts'])->name('trashed_products');
+Route::get('pages/products.restore/{id}', [App\Http\Controllers\ProductController::class, 'restoreProducts'])->name('restore_products');
+Route::get('pages/products/permanentlyDelete/{id}', [App\Http\Controllers\ProductController::class, 'permanentlyDeleteProducts'])->name('permanently_delete_products');
 
 Route::resource('contracts', App\Http\Controllers\ContractController::class);
 Route::get('pages/products/create/{id}', [App\Http\Controllers\ProductController::class, 'create'])->name('add_products');
+Route::get('pages/contracts/trashed', [App\Http\Controllers\ContractController::class, 'onlyTrashedContracts'])->name('trashed_contracts');
+Route::get('pages/contracts.restore/{id}', [App\Http\Controllers\ContractController::class, 'restoreContracts'])->name('restore_contracts');
+Route::get('pages/contracts/permanentlyDelete/{id}', [App\Http\Controllers\ContractController::class, 'permanentlyDeleteContracts'])->name('permanently_delete_contracts');
 
 Route::get('pages/activity', [App\Http\Controllers\ActivityController::class, 'index'])->name('activity');
 

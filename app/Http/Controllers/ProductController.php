@@ -90,4 +90,22 @@ class ProductController extends Controller
         $product->delete();
         return back();
     }
+
+    public function onlyTrashedProducts()
+    {
+        $products = Product::onlyTrashed()->whereNotNull('deleted_at')->get();
+        return view('pages.products.trashed', compact('products'));
+    }
+
+    public function restoreProducts(Request $request, $id)
+    {
+        Product::onlyTrashed()->find($id)->restore();
+        return redirect()->route('trashed_products');
+    }
+
+    public function permanentlyDeleteProducts(Request $request, $id)
+    {
+        Product::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->route('trashed_products');
+    }
 }

@@ -21,7 +21,11 @@
                         <tr>
                             <th scope="row">{{ $contract->id }}</th>
                             <td>{{ $contract->name }}</td>
-                            <td>{{ $contract->provider->name }}</td>
+                            @isset ($contract->provider->name)
+                                <td>{{ $contract->provider->name }}</td>
+                            @else
+                                <td>Provider deleted</td>
+                            @endisset
                             <td>
                                 <a href="{{ route('contracts.edit', $contract) }}">Edit</a>
                             </td>
@@ -35,7 +39,9 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>
+            </table> 
+            <a href="{{ route('contracts.create') }}" class="btn btn-primary btn-block">New Contract</a>
+            <a href="{{ route('trashed_contracts') }}" class="btn btn-outline-secondary btn-block">Trash</a>
         </div>
     </div>
 </div>

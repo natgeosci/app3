@@ -11,9 +11,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Contract name</th>
                         <th></th>
-                        <th>
-                            <a href="{{ route('add_contract', $provider->id) }}" class="btn btn-primary">New Contract</a>
-                        </th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>

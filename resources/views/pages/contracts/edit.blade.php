@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <a href="{{ route('providers.index') }}">Back</a>
+        <a href="{{ route('contracts.index') }}">Back</a>
             <div class="card">
                 <div class="card-header">Edit {{ $contract->name }} Contract</div>
 
@@ -31,6 +31,20 @@
                                 @endforeach
                             </select>
                             @error('products')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for='provider_id'>Provider</label>
+                            <select id="provider_id" class="custom-select @error('provider_id') is-invalid @enderror" autocomplete="provider_id" autofocus name="provider_id">
+                                @foreach ($providers as $provider)
+                                    <option value="{{ $provider->id }}" {{ old('provider_id', $contract->provider_id) == $provider->id?'selected':''}}>{{ $provider->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('provider_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
