@@ -20,9 +20,13 @@
                     @foreach ($contracts as $contract)
                         <tr>
                             <th scope="row">{{ $contract->id }}</th>
-                            <td>{{ $contract->name }}</td>
+                            <td>
+                                <a href="{{ route('contracts.show', $contract->id) }}">{{ $contract->name }}</a>    
+                            </td>
                             @isset ($contract->provider->name)
-                                <td>{{ $contract->provider->name }}</td>
+                                <td>
+                                    <a href="{{ route('providers.show', $contract->provider->id) }}">{{ $contract->provider->name }}</a>    
+                                </td>
                             @else
                                 <td>Provider deleted</td>
                             @endisset

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <h3>{{ $contract->name }}</h3>
             <div class="col-md-8">
-                <a href="{{ route('providers.index') }}" class="btn btn-outline-secondary">Back</a>
+                <a href="{{ route('contracts.index') }}" class="btn btn-outline-secondary">Back</a>
                 <table class="table">
                     <thead class="thead-light">
                         <tr>

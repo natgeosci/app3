@@ -88,6 +88,7 @@ class ContractController extends Controller
     public function update(UpdateContractRequest $request, Contract $contract)
     {
         $contract->update($request->validated());
+        $contract->provider_id = $request->provider_id;
         $contract->save();
         $contract->products()->sync(request('products'));
         return redirect()->route('contracts.index');
