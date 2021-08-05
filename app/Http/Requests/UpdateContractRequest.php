@@ -24,7 +24,7 @@ class UpdateContractRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|string|min:3|max:255',
+            'name' => 'required|string|min:3|max:255|unique:contracts,name,'.$this->contract->id
         ];
     }
 }

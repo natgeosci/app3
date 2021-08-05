@@ -17,7 +17,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers = Provider::all();
+        $providers = Provider::with('contracts')->get();
         return view('pages.providers.index', compact('providers'));
     }
 
@@ -52,7 +52,8 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        //
+        $contracts = Contract::where('provider_id', $provider->id)->orderBy('updated_at', 'desc')->get();
+        return view('pages.providers.show', compact('provider', 'contracts'));
     }
 
     /**

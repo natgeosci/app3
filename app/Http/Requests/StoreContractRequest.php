@@ -24,7 +24,8 @@ class StoreContractRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|unique:contracts|string|min:3|max:255',
+            'name' => 'required|unique:contracts|string|min:3|max:255',
+            'products' => 'exists:products,id'
         ];
     }
 }

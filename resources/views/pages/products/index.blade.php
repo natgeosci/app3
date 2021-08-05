@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <h3>Products</h3>
         <div class="col-md-8">
         <a href="{{ route('welcome') }}">Back</a>
             <table class="table">
@@ -10,7 +11,6 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Description</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -20,7 +20,6 @@
                         <tr>
                             <th scope="row">{{ $product->id }}</th>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->description }}</td>
                             <td>
                                 <a href="{{ route('products.edit', $product) }}">Edit</a>
                             </td>
@@ -35,7 +34,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <a href="{{ route('products.create') }}" class="btn btn-primary btn-block">Add New Product</a>
+            <a href="{{ route('products.create') }}" class="btn btn-primary btn-block">New Product</a>
         </div>
     </div>
 </div>

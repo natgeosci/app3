@@ -3,15 +3,31 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Contract extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
-        'name'
+        'name', 
+        'provider_id' 
     ]; 
 
-    public function products() 
+    public function provider()
     {
-        return $this->hasMany(Product::class); 
+        return $this->belongsTo(Provider::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logOnly(['*']);
     }
 }

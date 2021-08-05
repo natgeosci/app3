@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <a href="{{ route('products.index') }}">Back</a>
+        <a href="{{ route('providers.index') }}">Back</a>
             <div class="card">
                 <div class="card-header">Edit {{ $contract->name }} Contract</div>
 
@@ -17,6 +17,20 @@
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $contract->name }}" placeholder="name" autocomplete="name" autofocus>
 
                             @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for='products'>Products</label>
+                            <select id="products" class="custom-select select2-multi @error('products') is-invalid @enderror" autocomplete="products" autofocus name="products[]" multiple>
+                                @foreach ($products as $prod)
+                                    <option value="{{$prod->id}}" {{ in_array($prod->id,$selected_products)?'selected':''}}> {{$prod->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('products')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

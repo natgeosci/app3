@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contract;
+use App\Models\Provider;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreContractRequest;
 use App\Http\Requests\UpdateContractRequest;
@@ -27,7 +29,8 @@ class ContractController extends Controller
      */
     public function create()
     {
-        return view('pages.contracts.create');
+        $products = Product::all();
+        return view('pages.contracts.create', compact('products'));
     }
 
     /**
@@ -39,8 +42,10 @@ class ContractController extends Controller
     public function store(StoreContractRequest $request)
     {
         $contract = new Contract($request->validated());
+        $contract->provider_id = request()->get('provider_id');
         $contract->save();
-        return redirect()->route('contracts.index');
+        $contract->products()->sync(request('products'));
+        return redirect()->route('providers.index');
     }
 
     /**
@@ -51,7 +56,7 @@ class ContractController extends Controller
      */
     public function show(Contract $contract)
     {
-        //
+        return view('pages.contracts.show', compact('contract'));
     }
 
     /**
@@ -62,7 +67,13 @@ class ContractController extends Controller
      */
     public function edit(Contract $contract)
     {
-        return view('pages.contracts.edit', compact('contract'));
+        $products = Product::all();
+        $selected_products = [];
+        foreach ($contract->products as $sel_prod)
+        {
+            array_push($selected_products, $sel_prod->id);
+        }
+        return view('pages.contracts.edit', compact('contract', 'products', 'selected_products'));
     }
 
     /**
@@ -76,7 +87,8 @@ class ContractController extends Controller
     {
         $contract->update($request->validated());
         $contract->save();
-        return redirect()->route('contracts.index');
+        $contract->products()->sync(request('products'));
+        return redirect()->route('providers.index');
     }
 
     /**

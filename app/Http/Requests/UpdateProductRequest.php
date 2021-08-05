@@ -24,8 +24,7 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|string|min:3|max:255',
-            'description' => 'required'
+            'name' => 'required|string|min:3|max:255|unique:products,name,'.$this->product->id
         ];
     }
 }

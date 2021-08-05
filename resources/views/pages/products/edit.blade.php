@@ -23,16 +23,6 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $product->description }}" placeholder="description" autocomplete="description" autofocus></textarea>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
                         <div class="form-group mb-0">
                             <button type="submit" class="btn btn-primary">
                                 Submit

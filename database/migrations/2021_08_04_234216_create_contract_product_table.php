@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddContractIdToProducts extends Migration
+class CreateContractProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddContractIdToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('contract_id')->after('id');
+        Schema::create('contract_product', function (Blueprint $table) {
+            $table->unsignedBigInteger('contract_id');
+            $table->unsignedBigInteger('product_id');
+
             $table->foreign('contract_id')->references('id')->on('contracts')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -26,8 +29,6 @@ class AddContractIdToProducts extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign('products_contract_id_foreign');
-        });
+        Schema::dropIfExists('contract_product');
     }
 }

@@ -24,7 +24,7 @@ class StoreProviderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|unique:providers|string|min:3|max:255'
+            'name' => 'required|unique:providers|string|min:3|max:255'
         ];
     }
 }

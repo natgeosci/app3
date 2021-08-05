@@ -6,7 +6,7 @@
         <div class="col-md-8">
         <a href="{{ route('products.index') }}">Back</a>
             <div class="card">
-                <div class="card-header">Add New Product</div>
+                <div class="card-header">Add Products</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('products.store') }}">
@@ -14,16 +14,6 @@
 
                         <div class="form-group">
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="name" autocomplete="name" autofocus>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" placeholder="description" autocomplete="description" autofocus></textarea>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
