@@ -3,23 +3,18 @@
 namespace App\Models;
 
 use App\Traits\RecordsActivity;
+use App\Traits\ActivityScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contract extends Model
 {
-    use SoftDeletes, RecordsActivity;
+    use SoftDeletes, RecordsActivity, ActivityScope;
 
     protected $fillable = [
         'name', 
         'provider_id' 
     ]; 
-
-    protected static $recordEvents = [
-        'created',
-        'updated', 
-        'deleted'
-    ];
 
     public function provider()
     {
@@ -29,10 +24,5 @@ class Contract extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class);
-    }
-
-    public function activities()
-    {
-        return $this->morphMany(Activity::class, 'subject');
     }
 }

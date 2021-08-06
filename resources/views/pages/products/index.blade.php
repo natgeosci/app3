@@ -37,6 +37,7 @@
                 </tbody>
             </table>
             <a href="{{ route('products.create') }}" class="btn btn-primary btn-block">New Product</a>
+            <a href="{{ route('trashed_products') }}" class="btn btn-outline-secondary btn-block">Trash</a>
         </div>
     </div>
 </div>

@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use App\Models\Activity;
-use ReflectionClass;
 
 trait RecordsActivity
 {
@@ -14,11 +13,8 @@ trait RecordsActivity
      */
     protected static function bootRecordsActivity()
     {
-        foreach (static::getModelEvents() as $event) {      // PHP Manual - Anonymous functions
-            static::$event(function ($model) use ($event) { // * Note: $model = Closures can also accept regular arguments
-                $model->recordActivity($event);             // * Note: use = Inheriting variables from the parent scope (Closures may also inherit variables from the parent scope) =>
-            });                                             // => It simply makes the specified variables of the outer scope available inside the closure.
-        }                                                   // * Note: :: = scope resolution operator
+        foreach (static::getModelEvents() as $event)                                    // PHP Manual - Anonymous functions * Note: :: = scope resolution operator
+            static::$event(fn ($model) => $model->recordActivity($event));              // * Note: $model = Closures can also accept regular arguments
     }                                                
 
     /**
@@ -29,9 +25,7 @@ trait RecordsActivity
      */
     public function recordActivity($event)
     {
-        Activity::create([
-            'subject_id' => $this->id,
-            'subject_type' => get_class($this), // get_class() = Returns the name of the class of an object => get_class(object $object = ?): string
+        $this->activities()->create([
             'name' => $this->getActivityName($this, $event), 
         ]);
     }
@@ -45,7 +39,7 @@ trait RecordsActivity
      */
     protected function getActivityName($model, $action)
     {
-        $name = strtolower((new ReflectionClass($model))->getShortName()); 
+        $name = strtolower(class_basename($model)); 
 
         return "{$action}_{$name}";
     }
@@ -57,12 +51,13 @@ trait RecordsActivity
      */
     protected static function getModelEvents()
     {
-        if (isset(static::$recordEvents)) {
-            return static::$recordEvents;
-        }
-
-        return [
+        return static::$recordEvents ?? [
             'created', 'updated', 'deleted'
         ];
+    }
+
+    public function activities()
+    {
+        return $this->morphMany(Activity::class, 'subject');
     }
 }

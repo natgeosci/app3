@@ -6,7 +6,18 @@
             <a href="{{ route('welcome') }}">Back</a>
             <div class="col-md-8">
                 @if (count($lastActivity))
-                    <h2 class="text-center">Last Activity</h2>
+                    <h2 class="text-center">All Activity</h2>
+                    <ul>
+                        <li>
+                            <a href="{{ route('contract_activity') }}">See All Activities related to Contract Model</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('product_activity') }}">See All Activities related to Product Model</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('provider_activity') }}">See All Activities related to Provider Model</a>
+                        </li>
+                    </ul>
                     @foreach ($lastActivity as $log)
                         <div class="card mb-3">
                             <div class="card-header">
