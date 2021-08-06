@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use App\Traits\RecordsActivity;
-use App\Traits\HasActivities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use SoftDeletes, RecordsActivity, HasActivities;
+    use SoftDeletes, RecordsActivity;
     
     protected $fillable = [
         'name'
@@ -24,5 +23,10 @@ class Product extends Model
     public function contracts()
     {
         return $this->belongsToMany(Contract::class);
+    }
+
+    public function activities()
+    {
+        return $this->morphMany(Activity::class, 'subject');
     }
 }           

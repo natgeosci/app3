@@ -10,16 +10,16 @@ class Activity extends Model
 
     public function contracts()
     {
-        return $this->morphedByMany(Contract::class, 'loggable');
+        return $this->morphTo(Contract::class);
     }
 
     public function products()
     {
-        return $this->morphedByMany(Product::class, 'loggable');
+        return $this->morphTo(Product::class);
     }
 
     public function providers()
     {
-        return $this->morphedByMany(Provider::class, 'loggable');
+        return $this->morphTo(Provider::class);
     }
 }
