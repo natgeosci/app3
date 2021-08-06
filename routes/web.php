@@ -34,9 +34,7 @@ Route::get('pages/contracts.restore/{id}', [App\Http\Controllers\ContractControl
 Route::get('pages/contracts/permanentlyDelete/{id}', [App\Http\Controllers\ContractController::class, 'permanentlyDeleteContracts'])->name('permanently_delete_contracts');
 
 Route::get('pages/activities/activity', [App\Http\Controllers\ActivityController::class, 'index'])->name('activity');
-Route::get('pages/activities/contract-activity', [App\Http\Controllers\ActivityController::class, 'getContractActivity'])->name('contract_activity');
-Route::get('pages/activities/product-activity', [App\Http\Controllers\ActivityController::class, 'getProductActivity'])->name('product_activity');
-Route::get('pages/activities/provider-activity', [App\Http\Controllers\ActivityController::class, 'getProviderActivity'])->name('provider_activity');
+Route::get('pages/activities/list/{model_type}', [App\Http\Controllers\ActivityController::class, 'getActivity'])->name('list_activity');
 
 // Auth::routes();
 

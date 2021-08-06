@@ -9,13 +9,13 @@
                     <h2 class="text-center">All Activity</h2>
                     <ul>
                         <li>
-                            <a href="{{ route('contract_activity') }}">See All Activities related to Contract Model</a>
+                            <a href="{{ route('list_activity', ['contract']) }}">See All Activities related to Contract Model</a>
                         </li>
                         <li>
-                            <a href="{{ route('product_activity') }}">See All Activities related to Product Model</a>
+                            <a href="{{ route('list_activity', ['product']) }}">See All Activities related to Product Model</a>
                         </li>
                         <li>
-                            <a href="{{ route('provider_activity') }}">See All Activities related to Provider Model</a>
+                            <a href="{{ route('list_activity', ['provider']) }}">See All Activities related to Provider Model</a>
                         </li>
                     </ul>
                     @foreach ($lastActivity as $log)
