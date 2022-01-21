@@ -13,8 +13,8 @@ trait RecordsActivity
      */
     protected static function bootRecordsActivity()
     {
-        foreach (static::getModelEvents() as $event)                                    // PHP Manual - Anonymous functions * Note: :: = scope resolution operator
-            static::$event(fn ($model) => $model->recordActivity($event));              // * Note: $model = Closures can also accept regular arguments
+        foreach (static::getModelEvents() as $event)                                    
+            static::$event(fn ($model) => $model->recordActivity($event));
     }                                                
 
     /**
