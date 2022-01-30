@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <a href="{{ route('providers.index') }}">Back</a>
-            <div class="card">
-                <div class="card-header">Add New Provider</div>
+        <a class="btn btn-outline-secondary" href="{{ route('providers.index') }}">Back</a>
+            <div class="card mt-4">
+                <div class="card-header">Add Provider</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('providers.store') }}">

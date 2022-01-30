@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <a href="{{ route('products.index') }}">Back</a>
-            <div class="card">
+        <a class="btn btn-outline-secondary" href="{{ route('products.index') }}">Back</a>
+            <div class="card mt-4">
                 <div class="card-header">Edit {{ $product->name }} Product</div>
 
                 <div class="card-body">

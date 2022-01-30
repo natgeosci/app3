@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
+        <a class="btn btn-outline-secondary" href="{{ route('welcome') }}">Back</a>
         <div class="row justify-content-center">
-            <a href="{{ route('welcome') }}">Back</a>
             <div class="col-md-8">
                 <h2 class="text-center">
                     @php

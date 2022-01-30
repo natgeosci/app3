@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <a href="{{ route('contracts.index') }}">Back</a>
-            <div class="card">
-                <div class="card-header">Add New Contract</div>
+        <a class="btn btn-outline-secondary" href="{{ route('contracts.index') }}">Back</a>
+            <div class="card mt-4">
+                <div class="card-header">Add Contract</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('contracts.store') }}">

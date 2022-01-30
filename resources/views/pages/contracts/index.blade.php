@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <h3>Contracts</h3>
         <div class="col-md-8">
-        <a href="{{ route('welcome') }}">Back</a>
-            <table class="table">
+        <a class="btn btn-outline-secondary" href="{{ route('welcome') }}">Back</a>
+            <table class="table mt-4">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">#</th>
@@ -31,13 +31,13 @@
                                 <td>Provider deleted</td>
                             @endisset
                             <td>
-                                <a href="{{ route('contracts.edit', $contract) }}">Edit</a>
+                                <a class="btn btn-secondary" href="{{ route('contracts.edit', $contract) }}">Edit</a>
                             </td>
                             <td>
                                 <form action="{{ route('contracts.destroy', $contract) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Delete</button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
                         </tr>

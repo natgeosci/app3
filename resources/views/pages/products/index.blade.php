@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <h3>Products</h3>
         <div class="col-md-8">
-        <a href="{{ route('welcome') }}">Back</a>
-            <table class="table">
+        <a class="btn btn-outline-secondary" href="{{ route('welcome') }}">Back</a>
+            <table class="table mt-4">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">#</th>
@@ -23,13 +23,13 @@
                                 <a href="{{ route('products.show', $product) }}">{{ $product->name }}</a>
                             </td>
                             <td>
-                                <a href="{{ route('products.edit', $product) }}">Edit</a>
+                                <a class="btn btn-secondary" href="{{ route('products.edit', $product) }}">Edit</a>
                             </td>
                             <td>
                                 <form action="{{ route('products.destroy', $product) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Delete</button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
                         </tr>
